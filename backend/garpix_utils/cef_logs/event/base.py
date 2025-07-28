@@ -52,6 +52,9 @@ class BaseEvent(Event, abc.ABC):
     suser = None
 
     def __call__(self, **fields):
+
+        fields = truncate_dict_by_model(fields)
+
         user = fields.pop("user", None)
         request = fields.pop("request", None)
         if "fname" in fields:
